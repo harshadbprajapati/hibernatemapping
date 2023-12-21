@@ -14,6 +14,10 @@ public class Student {
     private String studentName;
 
     @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "JOIN_STUDENT_CERTIFICATION",
+            joinColumns =  {@JoinColumn(name = "STUDENT_ID_FK") },
+            inverseJoinColumns = {@JoinColumn(name = "CERTIFICATION_ID_FK")}
+    )
     private Set<Certification> studentCertificates;
 
     public Set<Certification> getStudentCertificates() {
