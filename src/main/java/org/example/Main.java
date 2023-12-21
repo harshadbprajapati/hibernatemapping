@@ -24,8 +24,10 @@ public class Main {
             tom.setStudentName("Tom Cruise");
             tom.setStudentDetail(tomDetail);
 
-            session.persist(tom);
-//            session.persist(tomDetail);
+            tomDetail.setStudent(tom);
+
+//            session.persist(tom);
+            session.persist(tomDetail);
 
             session.getTransaction().commit();
 

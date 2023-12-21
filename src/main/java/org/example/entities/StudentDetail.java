@@ -13,6 +13,18 @@ public class StudentDetail {
     @Column(name = "ZIPCODE")
     int zipCode;
 
+    @OneToOne(mappedBy = "studentDetail", cascade = CascadeType.ALL)
+//    @OneToOne(cascade = CascadeType.ALL)
+    private Student student;
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
     public int getStudentDetailId() {
         return studentDetailId;
     }
