@@ -6,6 +6,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
         Configuration config = new Configuration();
@@ -39,10 +42,21 @@ public class Main {
             will.setStudentCollege(princeton);
             keanu.setStudentCollege(standford);
 
-            // Store the students
-            session.persist(tom);
-            session.persist(will);
-            session.persist(keanu);
+            // Create lists for students for colleges
+            List standfordStudents = new ArrayList();
+            standfordStudents.add(tom);
+            standfordStudents.add(keanu);
+
+            List princetonStudents = new ArrayList();
+            princetonStudents.add(will);
+
+            // Set lists of students for colleges
+            standford.setStudents(standfordStudents);
+            princeton.setStudents(princetonStudents);
+
+            // Store the colleges
+            session.persist(standford);
+            session.persist(princeton);
 
             session.getTransaction().commit();
 
@@ -50,6 +64,5 @@ public class Main {
             session.close();
             sessionFactory.close();
         }
-
     }
 }
